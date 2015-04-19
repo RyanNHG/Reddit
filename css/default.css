@@ -1,0 +1,42 @@
+/* 
+  COLORS:
+    Purple      -   #732C7B
+    Dark Gray   -   #333333 
+    Light Gray  -   #cccccc
+*/
+
+body {
+    background-color: #cccccc;
+}
+
+#page_active {
+    margin-top: 1rem;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+}
+
+.alert-box {
+    display: none;
+    top:0px;
+    margin: 0px;
+}
+
+#li_user {
+    display: none;
+}
+
+.left-side-swag {
+    border-right: 1px;
+    border-right-style: solid;
+    border-right-color: #cccccc;
+}
+
+.link_home img {
+  height: 16px;
+  position: relative;
+  top: -2px;
+  left: -2px;
+}

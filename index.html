@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reddit</title>
+    <link rel="icon" href="img/reddit-icon.png" type="image/png"/>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="img/foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    
+    <!-- BEGIN NAV BAR -->
+
+    <div class ="contain-to-grid fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a class="link_home"><img src="img/reddit-icon-white.png"><strong>Reddit</strong>Modern</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a><span></span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+
+          <!-- Left Nav Section -->
+          <ul class="left">
+          </ul>
+          <!-- Right Nav Section -->
+          <ul class="right">
+
+          <li class="has-form">
+            <input id="search_subreddit" type="text" placeholder="Enter subreddit...">
+          </li>
+
+            <li class="divider"></li>
+
+            <li id="li_login"><a class="link_login">Login</a></li>
+            <li id="li_user" class="has-dropdown">
+              <a>Ryan</a>
+              <ul class="dropdown">
+                <li><a class="link_logout">Logout</a></li>
+              </ul>
+            </li>
+
+            <li class="divider"></li>
+
+          </ul>
+
+        </section>
+      </nav>
+
+      <!-- ALERTS -->
+      <div id="loginAlertSuccess" data-alert class="alert-box success">
+        <div class="row">Login successful!</div>
+      </div>
+
+      <div id="logoutAlertSuccess" data-alert class="alert-box success">
+        <div class="row">Logout successful!</div>
+      </div>
+
+    </div>
+
+    <!-- END NAV BAR -->
+
+
+
+    <div id="page_active">
+      <!-- CURRENT PAGE -->
+    </div>
+
+
+    <!-- MODALS FOR SIGNING IN -->
+    <div id="loginModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2>Sign in to Reddit</h2>
+      <div class="row"  data-equalizer>
+
+        <div class="small-6 columns left-side-swag"  data-equalizer-watch>
+          <h4>Sign up</h4>
+          <form id="form_createAccount">
+            <div class="row collapse">
+              <div class="small-12 columns">
+                <input id="create_username" type="text" placeholder="Username" />
+              </div>
+              <div class="small-12 columns">
+                <input id="create_pass" type="password" placeholder="Password" />
+              </div>
+              <div class="small-12 columns">
+                <input id="create_passConfirm" type="password" placeholder="Confirm Password" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="small-6 columns"  data-equalizer-watch>
+          <h4>Login</h4>
+          <form id="form_login">
+            <div class="row collapse">
+              <div class="small-12 columns">
+                <input id="username" type="text" placeholder="Username" />
+              </div>
+              <div class="small-12 columns">
+                <input id="pass" type="password" placeholder="Password" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="row"> 
+
+        <div class="small-6 columns left-side-swag">
+          <button class="small expand btn_login">Sign up</button>
+        </div>
+
+        <div class="small-6 columns">
+          <button class="small expand btn_login">Login</button>
+        </div>
+
+      </div>
+
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div id="logoutModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2>Do you want to logout?</h2>
+      <button class="expand alert btn_logout">Logout</button>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+
+    
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script src="js/default.js"></script>
+  </body>
+</html>
