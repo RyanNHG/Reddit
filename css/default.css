@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+  background-color: gray;
+}
+
+.tab-bar-section.hide-for-large-up {
+  margin-left: 44px;
+}
+
+.tab-bar-section {
+  text-align: left;
+}
+
+.off-canvas-wrap, .inner-wrap{
+  height: 100%;
+}
+
+.main-section {
+  padding-bottom: 2.8125rem;
+}
+
+.main-section, .main-section > .row,
+#menu-section, #content-section,
+#content-section > .row {
+  height: inherit;
+}
+
+#menu-section, #content-section {
+  overflow-y: auto;
+  overflow-x: hidden; 
+  padding: 0px;
+}
+
+#menu-section > .off-canvas-list{
+  margin-top: 1.25rem;
+  background-color: #333333;
+}
+
+#content-section .panel{
+  margin: .25rem;
+  margin-bottom: 0px;
+  margin-top: 1.25rem; 
+}
