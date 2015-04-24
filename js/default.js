@@ -1,3 +1,4 @@
+
 var titles = [
     "Mountains are nice",
     "Your new wallpaper",
