@@ -1,87 +1,131 @@
-
-var titles = [
-    "Mountains are nice",
-    "Your new wallpaper",
-    "This cat is too cute!",
-    "Lil pup!"
-];
-
-var authors = [
-    "ryan2345",
-    "hansel222",
-    "reebs408",
-    "eric63"
-];
-
-var scores = [
-    1032,
-    513,
-    268,
-    42
-];
-
-var nums_comments = [
-    156,
-    37,
-    22,
-    13
-];
-
-
 $(document).ready(function(){
-
-    $('#content-section > .row').slideUp(function(){
-        for(var i = 0; i < 4; i++)
-            loadImagePost(titles[i], authors[i], scores[i], nums_comments[i], 'img/sample'+i+'.jpg', 7-i);
-
-        $('#content-section > .row').slideDown();
-    });
-
+	
+	if(window.location.hash.length < 2)
+	{
+		getRedditPosts('all');		
+	}
+	else getRedditPosts(window.location.hash.substring(1));
+	$('#subredditField').keypress(function(e) {
+    if(e.which == 13) {
+      event.preventDefault();
+			window.location.hash = '#'+ $('#subredditField').val();
+			getRedditPosts($('#subredditField').val());
+			$('#subredditField').val('');
+      return false;
+    }
+});
 });
 
-function loadImagePost(title,author,score,num_comments,imageUrl,created)
+function getRedditPosts(subreddit)
 {
+		$('#contentRow').fadeOut(function () {
+			$('#contentRow').html('');
+			
+			$.getJSON('http://api.reddit.com/r/'+subreddit+'.json', function(data){
+				console.log(data);
+				
+				var posts = data.data.children;
+				console.log(posts);
+				
+				$.each(posts, function(i, post){
+					var data = post.data;
+					var title = data.title;
+					var author = data.author;
+					var subreddit = data.subreddit;
+					var isSelf = data.is_self;
+					var url = data.url;
+					var topCommentAuthor = "Coming soon";
+					var topCommentText = "Top comments!";
+					
+					addPanel(title, author, subreddit, isSelf, url, topCommentAuthor, topCommentText);
+					
+				});
+				
+				$('#contentRow').append(
+					'<div class="col-xs-12">'+
+						'<button class="btn btn-primary btn-lg btn-block" id="btnMore">More</button>'+
+					'</div>'
+				);
+				
+				$('#contentRow').fadeIn();
+				
+			});
+		});
+	
 
-    var html =  '<div class="small-12 columns">'+
-'                    <div class="row">'+
-'                      <a href="#headerClicked">'+
-'                        <div class="small-12 columns">'+
-'                          <div class="panel" style=" padding-bottom: 0px; ">'+
-'                              <div class="row">'+
-'                                <div class="small-12 columns">'+
-'                                  <h3 style="font-weight: bold;">'+title+'</h3>'+
-'                                </div>'+
-'                                <div class="small-6 columns" style="margin-left: 0px;">'+
-'                                  <h5 style="margin-left: 1.225rem;">'+author+'</h5>'+
-'                                </div>'+
-'                                <div class="small-6 columns">'+
-'                                  <p style="text-align: right; margin-right: 1.25rem;">'+created+' hours ago</p>'+
-'                                </div>'+
-'                              </div>'+
-'                            </div>'+
-'                        </div>'+
-'                      </a>'+
-'                      <a href="#imageClicked">'+
-'                        <div class="small-12 columns">'+
-'                          <img src="'+imageUrl+'" >'+
-'                        </div>'+
-'                      </a>'+
-'                      <a href="#commentClicked">'+
-'                        <div class="small-12 columns">'+
-'                          <div class="panel" style=" padding-bottom: 10px; margin-top: 0px; padding-top: 10px;">'+
-'                            <div class="row">'+
-'                              <div class="small-9 columns">'+
-'                                <p style="margin-bottom: 0px;"><strong>babyhansel</strong> - Cute cat!</p>'+
-'                              </div>'+
-'                              <div class="small-3 columns">'+
-'                                <p style="text-align: right; margin-bottom: 0px;"><strong>'+num_comments+'</strong></p>'+
-'                              </div>'+
-'                            </div>'+
-'                          </div>'+
-'                        </div>'+
-'                      </a>'+
-'                    </div>'+
-                '</div>';
+}
 
-        $('#content-section > .row').append(html);
+function addPanel(title, author, subreddit, isSelf, url, topCommentAuthor, topCommentText)
+{
+	var imageUrl, imageString;
+	
+	if(isSelf)
+	{
+		imageUrl = "";
+		imageString = "";
+	}
+	else if(url.indexOf('imgur') > -1)
+	{
+		if(url.indexOf('gif') > -1)
+		{
+			imageUrl = url;
+			imageString = '<video src="'+imageUrl+'">';
+		}
+		else
+		{
+			imageUrl = url+'.png';
+			imageString = '<img src="'+imageUrl+'">';
+		}
+	}
+	else
+	{
+		imageUrl = url;
+		imageString = '<img src="'+imageUrl+'">';
+	}
+	
+	$('#contentRow').append(
+				'<div class="col-xs-12">'+
+					'<div class="panel panel-default">'+
+						
+							'<div class="panel-heading">'+
+								'<div class="row">'+
+									'<div class="col-xs-2">'+
+										'<button type="button" class="btn btn-default btn-block">'+
+										  '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'+
+										'</button>'+
+										'<button type="button" class="btn btn-default btn-block">'+
+										  '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'+
+										'</button>'+
+									'</div>'+
+									'<a role="button" class="heading-link">'+
+										'<div class="col-xs-10">'+
+											'<h4>'+title+'</h4>'+
+											'<p>'+author+' (on r/'+subreddit+')</p>'+
+										'</div>'+
+									'</a>'+
+								'</div>'+
+							'</div>'+
+						
+						'<a role="button" class="body-link" href="'+url+'">'+
+							'<div class="panel-body">'+
+								imageString+
+							'</div>'+
+						'</a>'+
+						
+						'<a role="button" class="footer-link">'+
+							'<div class="panel-footer">'+
+								'<div class="row">'+
+									'<div class="col-xs-9">'+
+										'<h5><strong>'+topCommentAuthor+'</strong> - '+topCommentText+'</h5>'+
+									'</div>'+
+									'<div class="col-xs-3">'+
+										  '<span class="glyphicon glyphicon-comment btn btn-default pull-right" aria-hidden="true"></span>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</a>'+
+						
+					'</div>'+
+				'</div>'
+	);
 }

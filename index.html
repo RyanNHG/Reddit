@@ -1,99 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ForReddit+</title>
-    <link rel="icon" href="img/reddit-icon.png" type="image/png"/>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="img/foundation-icons/foundation-icons.css" />
-    <link rel="stylesheet" href="css/default.css" />
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
-        <nav class="tab-bar">
-
-          <div class="left-small hide-for-large-up">
-            <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
-          </div>
-
-          <div class="left tab-bar-section hide-for-large-up">
-            <h1>ForReddit+</h1>
-          </div>
-
-
-          <div class="middle tab-bar-section show-for-large-up row">
-            <h1>ForReddit+</h1>
-          </div>
-
-        </nav>
-
-        <!-- SETTINGS MENU - Options for the user-->
-        <nav class="left-off-canvas-menu">
-          <ul class="off-canvas-list">
-            <li><label>Subreddits</label></li>
-            <li><a href="#">r/all</a></li>
-            <li><a href="#">r/funny</a></li>
-            <li><a href="#">r/gifs</a></li>
-            <li><a href="#">r/gaming</a></li>
-            <li><a href="#">r/dota2</a></li>
-            <li><label>Account</label></li>
-            <li><a href="#">Login</a></li>
-            <li><label>Settings</label></li>
-            <li><a href="#">Theme</a></li>
-            <li><a href="#">Content</a></li>
-          </ul>
-        </nav>
-
-        <!--  MAIN SECTION - This is where all of the reddit content will go. -->
-        <div class="main-section">
-
-          <div class="row">
-
-            <div id="menu-section" class="large-4 columns show-for-large-up">
-                <ul class="off-canvas-list">
-                  <li><label>Subreddits</label></li>
-                  <li><a href="#">r/all</a></li>
-                  <li><a href="#">r/funny</a></li>
-                  <li><a href="#">r/gifs</a></li>
-                  <li><a href="#">r/gaming</a></li>
-                  <li><a href="#">r/dota2</a></li>
-                  <li><label>Account</label></li>
-                  <li><a href="#">Login</a></li>
-                  <li><label>Settings</label></li>
-                  <li><a href="#">Theme</a></li>
-                  <li><a href="#">Content</a></li>
-                </ul>
-            </div>
-
-
-            <div id="content-section" class="small-12 large-8 columns">
-
-              <div class="row">
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <a class="exit-off-canvas"></a>
-
-
-      </div>
-    </div>
-
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+	<head>
+		<title>PlusForReddit</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/default.css" rel="stylesheet">
+	</head>
+	<body>
+		
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container">
+			  <div class="navbar-header">
+					<a class="navbar-brand" href="#home">
+						<strong>Reddit</strong>
+					</a>
+				</div>
+				<form class="navbar-form navbar-right">
+				  <div class="input-group">
+      			<div class="input-group-addon">r/</div>
+				    <input type="text" class="form-control" placeholder="Subreddit" id="subredditField">
+				  </div>
+				</form>
+			</div>
+		</nav>
+		
+		<div class="container">
+			<div class="row" id="contentRow">
+				
+			</div>
+		</div>
+		
+	<script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/default.js"></script>
-  </body>
+	</body>
 </html>
